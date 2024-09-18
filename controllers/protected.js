@@ -1,15 +1,14 @@
+// Função para redirecionar após um atraso
+function redirectToLogin() {
+    setTimeout(() => {
+      window.location.href = 'login.html'; // Redireciona para a página de login após 3 segundos
+    }, 3000); // 3000 milissegundos = 3 segundos
+  }
+  
   // Verifica se o usuário está autenticado
   if (localStorage.getItem('authenticated') !== 'true') {
-      window.location.href = 'login.html'; // Redireciona para a página de login
+    redirectToLogin(); // Redireciona para a página de login após o atraso
   }
-
-  // Adiciona funcionalidade de logout
-  document.getElementById('logoutButton').addEventListener('click', function() {
-      localStorage.removeItem('authenticated');
-      localStorage.removeItem('usuario');
-      window.location.href = 'login.html'; // Redireciona para a página de login
-  });
-
 
 
 

@@ -1,0 +1,88 @@
+body, html {
+    overflow-x: hidden; /* Remove rolagem horizontal globalmente */
+  }
+
+/* Estilizando os "bullets" personalizados da paginação */
+.swiper-pagination {
+    display: flex;
+    justify-content: center; /* Centraliza os bullets */
+    flex-wrap: nowrap; /* Impede quebra de linha */
+    gap: 10px; /* Espaçamento entre os bullets */
+    margin-top: 20px; /* Espaçamento acima da paginação */
+    overflow-x: hidden; /* Remove a rolagem horizontal */
+    white-space: nowrap; /* Impede quebra de texto dentro dos bullets */
+}
+
+.swiper-pagination span {
+    display: inline-block;
+    padding: 5px 15px; /* Aumenta o padding para dar mais espaço ao texto */
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    text-align: center;
+    min-width: 100px; /* Define uma largura mínima para garantir espaço */
+}
+
+.swiper-pagination span.swiper-pagination-bullet-active {
+    background-color: #0056b3; /* Cor diferente para o bullet ativo */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 767px) {
+    .swiper-pagination {
+        flex-wrap: wrap; /* Permite quebra de linha se necessário */
+        overflow-x: hidden; /* Remove a rolagem horizontal */
+        gap: 10px; /* Espaçamento entre os bullets */
+        padding: 0; /* Remove o padding */
+        margin: 10px 0; /* Ajusta a margem superior e inferior */
+    }
+
+    .swiper-pagination span {
+        padding: 5px 10px; /* Ajusta o padding */
+        min-width: 70px; /* Largura mínima reduzida */
+        font-size: 12px; /* Diminui o tamanho da fonte */
+    }
+}
+
+/* Outros estilos */
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: #f0f0f0;
+    height: 300px;
+}
+
+.message {
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 300px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.like, .dislike {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dislike {
+    background-color: #ff4d4d;
+}

@@ -1,7 +1,11 @@
+if(!localStorage.getItem('firstAccess_samira')) {
+  window.location.href = 'primeiroAcesso.html';
+}
+
 // Verifica se o usuário está autenticado
 if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('usuario') !== 'samira') {
-  window.location.href = 'login.html'; // Redireciona para a página de login
-}
+  window.location.href = 'index.html'; // Redireciona para a página de login
+} 
 
 // Adiciona funcionalidade de logout
 document.getElementById('logoutButton')?.addEventListener('click', function() {

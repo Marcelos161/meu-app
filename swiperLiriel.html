@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swiper Carousel liriel</title>
+  <title>Swiper Carousel com Chat</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/styles.css"> <!-- Link para o CSS externo -->
 </head>
@@ -11,33 +11,38 @@
 
 <div class="swiper-container">
   <div class="swiper-wrapper">
-    <div class="swiper-slide" data-page="1">
-      <div class="message" id="message-1">Clique para gerar uma frase</div>
-      <div class="buttons">
-        <button class="like" data-page="1">Like</button>
-        <button class="dislike" data-page="1">Dislike</button>
+    <!-- Página 1 -->
+    <div class="swiper-slide">
+      <h1>Seção 1: Fotos</h1>
+      <!-- Conteúdo para a primeira página -->
+    </div>
+    
+    <!-- Página 2 - Chat -->
+    <div class="swiper-slide">
+      <div class="chat-container">
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input">
+          <input type="text" id="messageInput" placeholder="Digite sua mensagem">
+          <button id="sendMessageButton">Enviar</button>
+        </div>
       </div>
     </div>
-    <div class="swiper-slide" data-page="2">
-      <div class="message" id="message-2">Clique para gerar uma frase</div>
-      <div class="buttons">
-        <button class="like" data-page="2">Like</button>
-        <button class="dislike" data-page="2">Dislike</button>
-      </div>
-    </div>
-    <div class="swiper-slide" data-page="3">
-      <div class="message" id="message-3">Clique para gerar uma frase</div>
-      <div class="buttons">
-        <button class="like" data-page="3">Like</button>
-        <button class="dislike" data-page="3">Dislike</button>
-      </div>
+
+    <!-- Página 3 -->
+    <div class="swiper-slide">
+      <h1>Seção 3: Adicionar Foto</h1>
+      <!-- Conteúdo para a terceira página -->
     </div>
   </div>
+  
   <!-- Add Pagination -->
   <div class="swiper-pagination"></div>
   <!-- Add Navigation -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
 </div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="./controllers/swiperLiriel.js"></script> <!-- Link para o JavaScript externo -->
 </body>
+</html>

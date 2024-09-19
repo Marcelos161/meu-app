@@ -1,6 +1,6 @@
 // Verifica se o usuário está autenticado
 if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('usuario') !== 'liriel') {
-  window.location.href = 'login.html'; // Redireciona para a página de login
+  window.location.href = 'index.html'; // Redireciona para a página de login
 }
 
 // Adiciona funcionalidade de logout se o botão existir
@@ -14,7 +14,7 @@ if (logoutButton) {
 }
 
 // Lista de nomes para as seções
-const sectionNames = ['Fotos', 'Chat', 'Adiconar Foto'];
+const sectionNames = ['Fotos', 'Chat', 'Adicionar Foto'];
 
 // Inicializando o Swiper com a paginação personalizada
 const swiper = new Swiper('.swiper-container', {
@@ -29,7 +29,7 @@ const swiper = new Swiper('.swiper-container', {
   },
   resizeObserver: true, // Habilita o observer de redimensionamento para ajustar o layout
 });
-  
+
 // Função para buscar frases da API
 async function getLoveQuote() {
   try {
@@ -45,11 +45,15 @@ async function getLoveQuote() {
 document.querySelectorAll('.swiper-slide').forEach((slide) => {
   slide.addEventListener('click', async () => {
     const page = slide.getAttribute('data-page');
+    if (page && page !== '2') return; // Ignora páginas que não são a segunda
+
     const messageDiv = document.getElementById(`message-${page}`);
-    messageDiv.textContent = 'Carregando...';
-    
-    const quote = await getLoveQuote();
-    messageDiv.textContent = quote;
+    if (messageDiv) {
+      messageDiv.textContent = 'Carregando...';
+
+      const quote = await getLoveQuote();
+      messageDiv.textContent = quote;
+    }
   });
 });
 
@@ -69,3 +73,36 @@ document.querySelectorAll('.dislike').forEach((btn) => {
     alert(`Você não curtiu a frase na página ${page}.`);
   });
 });
+
+// Funções para o chat
+document.getElementById('sendMessageButton').addEventListener('click', () => {
+  const messageInput = document.getElementById('messageInput');
+  const chatMessages = document.getElementById('chatMessages');
+  
+  if (messageInput.value.trim()) {
+    const message = document.createElement('div');
+    message.textContent = messageInput.value;
+    chatMessages.appendChild(message);
+    // Salva a mensagem na Supabase
+    saveMessageToSupabase(messageInput.value);
+
+    messageInput.value = '';
+  }
+});
+
+async function saveMessageToSupabase(message) {
+  try {
+    const response = await fetch('https://your-supabase-url/rest/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer YOUR_SUPABASE_API_KEY`
+      },
+      body: JSON.stringify({ content: message })
+    });
+    
+    if (!response.ok) throw new Error('Erro ao salvar a mensagem');
+  } catch (error) {
+    console.error('Erro ao salvar a mensagem:', error);
+  }
+}

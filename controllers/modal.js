@@ -31,7 +31,7 @@ doc.text("No dia 11 de outubro de 2025, teremos um encontro.", 20, 50);
 doc.text("Este é um contrato totalmente opcional.", 20, 60);
 doc.text("Caso deseje desistir, não há problema algum.", 20, 70);
 doc.text("*Peço apenas que me comunique.", 20, 80);
-doc.text("*para voltar para a pagina, clique no link enviado pelo wpp novamente Liriel, AMEM???.", 20, 80);
+doc.text("*para voltar para a pagina, clique no link enviado pelo wpp novamente Liriel, AMEM???.", 20, 90);
 
 // Salvar o PDF
 doc.save("contratoEncontro.pdf");

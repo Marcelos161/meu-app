@@ -10,14 +10,14 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> <!-- jQuery UI -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
   <div id="tabs">
     <ul>
-      <li><i class="fas fa-quote-right"></i><a href="#tab-1">Frases</a></li>
-      <li><i class="fas fa-images"></i><a href="#tab-2">Galeria de Fotos</a></li>
+      <li><a href="#tab-1">Chat</a></li>
+      <li><a href="#tab-2">Galeria de Fotos</a></li>
+      <li><a href="#tab-3">Contrato</a></li>
     </ul>
 
     <div id="tab-1">
@@ -25,6 +25,28 @@
     </div>
 
     <div id="tab-2">
+      <div class="adicionar fotos">
+        <button id="openModalBtn" class="upload-btn">Adicionar Fotos</button>
+
+         <!-- Modal -->
+        <div id="photoModal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Adicionar Foto</h2>
+              <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+              <form id="uploadForm">
+                <label for="fileInput">Escolha uma foto:</label>
+                <input type="file" id="fileInput" name="photo" accept="image/*">
+                <br><br>
+                <button type="submit" class="upload-btn">Upload</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="fotos" id="fotos-3"></div>
       <div class="swiper-container fotos-swiper">
         <div class="swiper-wrapper" id="fotos-wrapper">
@@ -37,10 +59,14 @@
     </div>
   </div>
 
+  
+  <div id="tab-3">
+    
+  </div>
+
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="./controllers/swiperSamira.js"></script> <!-- Link para o JavaScript externo -->
   <script src="./controllers/notificacoes.js" defer></script>
-
   <script>
     $(function () {
       $("#tabs").tabs({
@@ -48,6 +74,25 @@
         show: { effect: "fade", duration: 200 }, // Efeito ao mostrar a aba
         hide: { effect: "fade", duration: 100 } // Efeito ao esconder a aba
       }); // Inicializa as abas
+    });
+
+     // Abrir o modal
+     $('#openModalBtn').click(function () {
+      $('#photoModal').show();
+    });
+
+     // Fechar o modal
+     $('.close').click(function () {
+      $('#photoModal').hide();
+    });
+
+     // Lógica para upload de fotos
+     $('#uploadForm').submit(function (e) {
+      e.preventDefault();
+      const fileInput = $('#fileInput').val();
+      uploadImage();
+      
+      $('#photoModal').hide();
     });
   </script>
 </body>

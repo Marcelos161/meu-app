@@ -1,5 +1,3 @@
-
-
 // Verifica se é o primeiro acesso
 if (!localStorage.getItem('firstAccess_samira')) {
   window.location.href = 'primeiroAcesso.html';
@@ -10,59 +8,8 @@ if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('us
   window.location.href = 'index.html'; // Redireciona para a página de login
 }
 
-// Adiciona funcionalidade de logout
-document.getElementById('logoutButton')?.addEventListener('click', function() {
-  localStorage.removeItem('authenticated');
-  localStorage.removeItem('usuario');
-  window.location.href = 'login.html'; // Redireciona para a página de login
-});
-
-
-
-// Função para buscar frases da API em português
-async function getLoveQuote() {
-  try {
-    const response = await fetch('https://api.example.com/quotes?tags=love&lang=pt'); // Substitua pela URL da sua API
-    const data = await response.json();
-    return data.content; // Retorna a frase
-  } catch (error) {
-    console.error('Erro ao obter a frase:', error);
-    return 'Não foi possível obter a frase.';
-  }
-}
-
-// Adicionando evento de clique para gerar a frase
-document.querySelectorAll('.swiper-slide').forEach((slide) => {
-  slide.addEventListener('click', async () => {
-    const page = slide.getAttribute('data-page');
-    const messageDiv = document.getElementById(`message-${page}`);
-    if (messageDiv) {
-      messageDiv.textContent = 'Carregando...';
-      const quote = await getLoveQuote();
-      messageDiv.textContent = quote;
-    }
-  });
-});
-
-// Eventos de like e dislike
-document.querySelectorAll('.like').forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evita que o clique no botão também acione o clique na slide
-    const page = e.target.getAttribute('data-page');
-    alert(`Você curtiu a frase na página ${page}!`);
-  });
-});
-
-document.querySelectorAll('.dislike').forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evita que o clique no botão também acione o clique na slide
-    const page = e.target.getAttribute('data-page');
-    alert(`Você não curtiu a frase na página ${page}.`);
-  });
-});
-
 // Função para carregar fotos no Swiper de fotos
-function loadFotos() {
+function loadFotos(imagens) {
   new Swiper('.fotos-swiper', {
     loop: false,
     pagination: {
@@ -73,17 +20,12 @@ function loadFotos() {
       nextEl: '.fotos-next',
       prevEl: '.fotos-prev',
     },
-    resizeObserver: true, 
+    resizeObserver: true,
   });
 
   const fotosWrapper = document.getElementById('fotos-wrapper');
 
-  // Exemplo de fotos - substitua por URLs reais
-  const fotos = [
-    'foto1.jpg',
-    'foto2.jpg',
-    'foto3.jpg',
-  ];
+  const fotos = imagens;
 
   fotos.forEach(fotoUrl => {
     const slide = document.createElement('div');
@@ -93,4 +35,56 @@ function loadFotos() {
   });
 
 }
-document.addEventListener('DOMContentLoaded', loadFotos);
+
+// upload de imagens
+
+const cloudName = 'dzgolou3t'; // Substitua pelo seu "Cloud Name" do dashboard do Cloudinary
+const uploadPreset = 'semAuth'; // Crie um preset no Cloudinary sem necessidade de autenticação
+
+function uploadImage() {
+  console.log('chegou aqui')
+  const fileInput = document.getElementById('fileInput');
+  const file = fileInput.files[0];
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', uploadPreset); // Usar preset criado no dashboard do Cloudinary
+
+  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      const imageUrl = data.secure_url;
+      console.log('Imagem enviada com sucesso:', imageUrl);
+    })
+    .catch(error => console.error('Erro ao enviar a imagem:', error));
+}
+
+
+// listar imagens
+
+const apiKey = '346449748872511';
+const apiSecret = 'qehHw3EC7Mh1HimscOKq1_BqAfM';
+
+// Endpoint para listar as imagens
+
+function listarImagens() {
+  const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image`;
+  fetch(url, {
+    headers: {
+      Authorization: 'Basic ' + btoa(`${apiKey}:${apiSecret}`)
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      const images = data.resources;
+      loadFotos(images);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Chame sua função aqui
+  listarImagens();
+});

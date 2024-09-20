@@ -1,131 +1,72 @@
-body, html {
-    overflow-x: hidden; /* Remove rolagem horizontal globalmente */
-  }
-
-/* Estilizando os "bullets" personalizados da paginação */
-.swiper-pagination {
-    display: flex;
-    justify-content: center; /* Centraliza os bullets */
-    flex-wrap: nowrap; /* Impede quebra de linha */
-    gap: 10px; /* Espaçamento entre os bullets */
-    margin-top: 20px; /* Espaçamento acima da paginação */
-    overflow-x: hidden; /* Remove a rolagem horizontal */
-    white-space: nowrap; /* Impede quebra de texto dentro dos bullets */
+html, body {
+  height: 100%; /* Altura total da janela */
+  margin: 0; /* Remove margens padrão */
+  overflow-x: hidden; 
 }
 
-.swiper-pagination span {
-    display: inline-block;
-    padding: 5px 15px; /* Aumenta o padding para dar mais espaço ao texto */
-    background-color: #007bff;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    text-align: center;
-    min-width: 100px; /* Define uma largura mínima para garantir espaço */
+#tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Altura total da janela */
 }
 
-.swiper-pagination span.swiper-pagination-bullet-active {
-    background-color: #0056b3; /* Cor diferente para o bullet ativo */
-    z-index: 9999;
+#tabs > div {
+  flex-grow: 1; /* Permite que o conteúdo ocupe o espaço disponível */
+  padding: 20px; /* Espaçamento interno do conteúdo */
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 767px) {
-    .swiper-pagination {
-        flex-wrap: wrap; /* Permite quebra de linha se necessário */
-        overflow-x: hidden; /* Remove a rolagem horizontal */
-        gap: 10px; /* Espaçamento entre os bullets */
-        padding: 0; /* Remove o padding */
-        margin: 10px 0; /* Ajusta a margem superior e inferior */
-    }
-
-    .swiper-pagination span {
-        padding: 5px 10px; /* Ajusta o padding */
-        min-width: 70px; /* Largura mínima reduzida */
-        font-size: 12px; /* Diminui o tamanho da fonte */
-    }
+.ui-tabs .ui-tabs-nav {
+  background: #007bff; /* Cor de fundo das abas */
+  border: none; /* Remove a borda padrão */
+  position: fixed; /* Fixa a barra das tabs na parte inferior */
+  bottom: 0; /* Posiciona na parte inferior */
+  width: 100%; /* Largura total */
+  display: flex; /* Usa flexbox para organizar as abas */
+  justify-content: space-around; /* Espaço igual entre as abas */
 }
 
-/* Outros estilos */
+.ui-tabs .ui-tabs-nav li {
+  list-style: none; /* Remove marcador padrão */
+}
+
+.ui-tabs .ui-tabs-nav li a {
+  color: white; /* Cor do texto das abas */
+  padding: 10px 15px; /* Espaçamento interno das abas */
+  text-decoration: none; /* Remove o sublinhado */
+  display: flex; /* Permite o uso de ícones */
+  align-items: center; /* Centraliza ícones e texto verticalmente */
+}
+
+.ui-tabs .ui-tabs-nav li a i {
+  margin-right: 5px; /* Espaçamento entre ícone e texto */
+}
+
+.ui-tabs .ui-tabs-nav li a:hover {
+  background: rgba(255, 255, 255, 0.2); /* Efeito de hover nas abas */
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+  background: #0056b3; /* Cor de fundo da aba ativa */
+}
+
+/* Estilo das abas */
+#tab-1, #tab-2 {
+  display: none; /* Esconde as abas inicialmente */
+}
+
+#tab-1.ui-tabs-active, #tab-2.ui-tabs-active {
+  display: block; /* Mostra a aba ativa */
+}
+
+.swiper-container {
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .swiper-slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    background-color: #f0f0f0;
-    height: 300px;
+  height: 100%;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
 }
-
-.message {
-    margin-bottom: 20px;
-    font-size: 18px;
-    text-align: center;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    max-width: 300px;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.like, .dislike {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.dislike {
-    background-color: #ff4d4d;
-}
-
-/* Estilos para o chat */
-.chat-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 10px;
-  }
-  
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    background-color: #f0f0f0;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  .chat-input {
-    display: flex;
-    margin-top: 10px;
-  }
-  
-  .chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .chat-input button {
-    padding: 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .chat-input button:hover {
-    background-color: #0056b3;
-  }

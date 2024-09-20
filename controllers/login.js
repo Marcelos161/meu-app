@@ -9,7 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (passwordInput === predefinedPasswordSamira) {
             localStorage.setItem('authenticated', 'true');
             localStorage.setItem('usuario', 'samira');
-            window.location.href = 'swiperSamira.html'; // Redireciona para a página protegida
+        
+            if (!localStorage.getItem('firstAccess_samira')) {
+                window.location.href = 'primeiroAcesso.html';
+            } else {
+                window.location.href = 'swiperSamira.html'; // Redireciona para a página de mensagens
+            }
         } else if(passwordInput === predefinePasswordsLiriel) {
             localStorage.setItem('authenticated', 'true');
             localStorage.setItem('usuario', 'liriel');
@@ -17,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             alert('Senha incorreta');
         }
+        
 
     });
 });

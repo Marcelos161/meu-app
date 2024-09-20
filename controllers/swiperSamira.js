@@ -1,25 +1,25 @@
-if(!localStorage.getItem('firstAccess_samira')) {
+// Verifica se é o primeiro acesso
+if (!localStorage.getItem('firstAccess_samira')) {
   window.location.href = 'primeiroAcesso.html';
 }
 
 // Verifica se o usuário está autenticado
 if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('usuario') !== 'samira') {
   window.location.href = 'index.html'; // Redireciona para a página de login
-} 
+}
 
 // Adiciona funcionalidade de logout
 document.getElementById('logoutButton')?.addEventListener('click', function() {
-    localStorage.removeItem('authenticated');
-    localStorage.removeItem('usuario');
-    window.location.href = 'login.html'; // Redireciona para a página de login
+  localStorage.removeItem('authenticated');
+  localStorage.removeItem('usuario');
+  window.location.href = 'login.html'; // Redireciona para a página de login
 });
 
 // Lista de nomes para as seções
-const sectionNames = ['Seção 1', 'Seção 2', 'Seção 3', 'Seção 4'];
+const sectionNames = ['Seção 1', 'Seção 2', 'fotos'];
 
 // Inicializando o Swiper com a paginação personalizada
 const swiper = new Swiper('.swiper-container', {
-  loop: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
@@ -72,3 +72,40 @@ document.querySelectorAll('.dislike').forEach((btn) => {
     alert(`Você não curtiu a frase na página ${page}.`);
   });
 });
+
+// Função para carregar fotos no Swiper de fotos
+function loadFotos() {
+  const fotosWrapper = document.getElementById('fotos-wrapper');
+  
+  // Exemplo de fotos - substitua isso para carregar fotos dinamicamente de um banco de dados ou API
+  const fotos = [
+    'fotoooo', // Substitua com URLs reais de imagens
+    'fotoo',
+    'footoo'
+  ];
+
+  fotos.forEach(fotoUrl => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    slide.innerHTML = `euu`;
+    fotosWrapper.appendChild(slide);
+  });
+
+  // Inicializa o Swiper aninhado para as fotos
+  new Swiper('.fotos-swiper', {
+    loop: false,
+    pagination: {
+      el: '.fotos-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.fotos-next',
+      prevEl: '.fotos-prev',
+    },
+  });
+}
+
+// Carrega as fotos ao iniciar
+document.addEventListener('DOMContentLoaded', loadFotos);
+
+// a partir daqui sao configuraçoes do firebase

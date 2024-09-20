@@ -28,6 +28,7 @@ body, html {
 
 .swiper-pagination span.swiper-pagination-bullet-active {
     background-color: #0056b3; /* Cor diferente para o bullet ativo */
+    z-index: 9999;
 }
 
 /* Ajustes para telas menores */

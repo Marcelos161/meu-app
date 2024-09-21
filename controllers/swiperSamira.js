@@ -57,8 +57,9 @@ function uploadImage() {
     body: formData, // Remova o cabeçalho 'Content-Type'
   })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then()
   .catch(error => console.error('Erro ao adicionar foto:', error));
+  
 }
 
 

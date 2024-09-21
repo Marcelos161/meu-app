@@ -1,58 +1,66 @@
-/* Estilos gerais do modal */
-.hidden {
-    display: none;
-  }
-  
-  .modal {
+   /* Estilos do modal e outros estilos aqui */
+   .modal {
+    display: none; /* Modal oculto por padrão */
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
   }
 
-  .modal2 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
   .modal-content {
     background-color: white;
+    margin: 10% auto;
     padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  #continueButton{
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  #continueButton:hover {
-    background-color: #0056b3;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
   }
 
-    #recusarButton {
-    padding: 10px 20px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 4px;
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .modal-header h2 {
+    margin: 0;
+  }
+
+  .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
+  }
+
+  .close:hover, .close:focus {
+    color: black;
+  }
+
+  .modal-body {
+    padding: 10px 0;
+  }
+
+  /* Estilo do botão de upload */
+  .upload-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+
+  .upload-btn:hover {
+    background-color: #0056b3;
   }

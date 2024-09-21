@@ -8,6 +8,9 @@ if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('us
   window.location.href = 'index.html'; // Redireciona para a página de login
 }
 
+ const urlTeste = 'http://localhost:8888/.netlify/functions/cloudinary';
+ const urlProduct = 'https://api-marcelo.netlify.app/.netlify/functions/cloudinary';
+
 // Função para carregar fotos no Swiper de fotos
 function loadFotos(imagens) {
   new Swiper('.fotos-swiper', {
@@ -28,12 +31,13 @@ function loadFotos(imagens) {
   const fotos = imagens;
 
   fotos.forEach(fotoUrl => {
-    const slide = document.createElement('div');
-    slide.className = 'swiper-slide';
-    slide.innerHTML = `<p>${fotoUrl}</p>`;
-    fotosWrapper.appendChild(slide);
+    if(fotoUrl.public_id !== "znjcbsrd3f0jnjqtd7my") {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<img src = "${fotoUrl.url}" alt = "${fotoUrl.display_name}" id = "${fotoUrl.public_id}" class="fotos-swiper">`;
+      fotosWrapper.appendChild(slide);
+    }
   });
-
 }
 
 // upload de imagens
@@ -42,49 +46,41 @@ const cloudName = 'dzgolou3t'; // Substitua pelo seu "Cloud Name" do dashboard d
 const uploadPreset = 'semAuth'; // Crie um preset no Cloudinary sem necessidade de autenticação
 
 function uploadImage() {
-  console.log('chegou aqui')
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
-
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('upload_preset', uploadPreset); // Usar preset criado no dashboard do Cloudinary
+  formData.append('upload_preset', 'semAuth');
 
-  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+  fetch('https://api.cloudinary.com/v1_1/dzgolou3t/image/upload', {
     method: 'POST',
-    body: formData
+    body: formData, // Remova o cabeçalho 'Content-Type'
   })
-    .then(response => response.json())
-    .then(data => {
-      const imageUrl = data.secure_url;
-      console.log('Imagem enviada com sucesso:', imageUrl);
-    })
-    .catch(error => console.error('Erro ao enviar a imagem:', error));
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Erro ao adicionar foto:', error));
 }
 
 
 // listar imagens
 
-const apiKey = '346449748872511';
-const apiSecret = 'qehHw3EC7Mh1HimscOKq1_BqAfM';
+// Função que faz requisição ao endpoint do Netlify
 
-// Endpoint para listar as imagens
+// funcao de listar imagen que ja esta disponivel
 
 function listarImagens() {
-  const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image`;
-  fetch(url, {
-    headers: {
-      Authorization: 'Basic ' + btoa(`${apiKey}:${apiSecret}`)
-    }
-  })
+  fetch(urlProduct)
     .then(response => response.json())
     .then(data => {
-      const images = data.resources;
-      loadFotos(images);
+      const images = data.resources;  // Pega as imagens da resposta JSON
+      loadFotos(images);  // Chama a função para carregar as fotos no Swiper
+    })
+    .catch(error => {
+      console.error('Erro ao listar imagens do Cloudinary:', error);
     });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Chame sua função aqui
-  listarImagens();
+  listarImagens();  // Chama a função ao carregar a página
 });
+

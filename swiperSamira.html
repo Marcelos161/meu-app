@@ -13,87 +13,101 @@
 </head>
 
 <body>
+  <!-- Cabeçalho fixo -->
+  <header class="header">
+      <div class="user-info">
+          <img src="URL_DA_FOTO_DO_USUARIO" alt="Foto do Usuário" class="user-photo">
+          <span class="user-name">Nome do Usuário</span>
+      </div>
+      <div class="header-buttons">
+          <button id="openModalBtn" class="upload-btn">Adicionar Fotos</button>
+      </div>
+  </header>
+
+  <!-- Tabs para navegação entre as seções -->
   <div id="tabs">
-    <ul>
-      <li><a href="#tab-1">Chat</a></li>
-      <li><a href="#tab-2">Galeria de Fotos</a></li>
-      <li><a href="#tab-3">Contrato</a></li>
-    </ul>
+      <ul>
+          <li><a href="#tab-1">Chat</a></li>
+          <li><a href="#tab-2">Galeria de Fotos</a></li>
+          <li><a href="#tab-3">Contrato</a></li>
+      </ul>
 
-    <div id="tab-1">
-      <p>oii</p>
-    </div>
+      <!-- Conteúdo do Chat -->
+      <div id="tab-1" class="margin-do-cabecalho">
+          <p>oii</p>
+      </div>
 
-    <div id="tab-2">
-      <div class="adicionar fotos">
-        <button id="openModalBtn" class="upload-btn">Adicionar Fotos</button>
-
-         <!-- Modal -->
-        <div id="photoModal" class="modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2>Adicionar Foto</h2>
-              <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-              <form id="uploadForm">
-                <label for="fileInput">Escolha uma foto:</label>
-                <input type="file" id="fileInput" name="photo" accept="image/*">
-                <br><br>
-                <button type="submit" class="upload-btn">Upload</button>
-              </form>
-            </div>
+      <!-- Galeria de Fotos com Modal para upload -->
+      <div id="tab-2">
+          <div class="adicionar fotos">
+              <!-- Modal para Adicionar Foto -->
+              <div id="photoModal" class="modal">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h2>Adicionar Foto</h2>
+                          <span class="close">&times;</span>
+                      </div>
+                      <div class="modal-body">
+                          <form id="uploadForm">
+                              <label for="fileInput">Escolha uma foto:</label>
+                              <input type="file" id="fileInput" name="photo" accept="image/*">
+                              <br><br>
+                              <button type="submit" class="upload-btn">Upload</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      
-      <div class="fotos" id="fotos-3"></div>
-      <div class="swiper-container fotos-swiper">
-        <div class="swiper-wrapper" id="fotos-wrapper">
-          <!-- As fotos serão carregadas dinamicamente aqui -->
-        </div>
-        <div class="swiper-pagination fotos-pagination"></div>
-        <div class="swiper-button-next fotos-next"></div>
-        <div class="swiper-button-prev fotos-prev"></div>
-      </div>
-    </div>
-  </div>
 
-  
-  <div id="tab-3">
-    
+          <!-- Swiper para Galeria de Fotos -->
+          <div class="fotos" id="fotos-3"></div>
+          <div class="swiper-container fotos-swiper">
+              <div class="swiper-wrapper" id="fotos-wrapper">
+                  <!-- As fotos serão carregadas dinamicamente aqui -->
+              </div>
+              <div class="swiper-pagination fotos-pagination"></div>
+              <div class="swiper-button-next fotos-next"></div>
+              <div class="swiper-button-prev fotos-prev"></div>
+          </div>
+      </div>
+
+      <!-- Contrato -->
+      <div id="tab-3" class="margin-do-cabecalho">
+          <p>Contrato será exibido aqui.</p>
+      </div>
   </div>
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="./controllers/swiperSamira.js"></script> <!-- Link para o JavaScript externo -->
   <script src="./controllers/notificacoes.js" defer></script>
+
+  <!-- Script para inicializar as abas e lidar com o modal -->
   <script>
-    $(function () {
-      $("#tabs").tabs({
-        active: 0, // Índice da aba ativa inicial
-        show: { effect: "fade", duration: 200 }, // Efeito ao mostrar a aba
-        hide: { effect: "fade", duration: 100 } // Efeito ao esconder a aba
-      }); // Inicializa as abas
-    });
+      $(function () {
+          $("#tabs").tabs({
+              active: 0, // Índice da aba ativa inicial
+              show: { effect: "fade", duration: 200 }, // Efeito ao mostrar a aba
+              hide: { effect: "fade", duration: 100 } // Efeito ao esconder a aba
+          });
+      });
 
-     // Abrir o modal
-     $('#openModalBtn').click(function () {
-      $('#photoModal').show();
-    });
+      // Abrir o modal
+      $('#openModalBtn').click(function () {
+          $('#photoModal').show();
+      });
 
-     // Fechar o modal
-     $('.close').click(function () {
-      $('#photoModal').hide();
-    });
+      // Fechar o modal
+      $('.close').click(function () {
+          $('#photoModal').hide();
+      });
 
-     // Lógica para upload de fotos
-     $('#uploadForm').submit(function (e) {
-      e.preventDefault();
-      const fileInput = $('#fileInput').val();
-      uploadImage();
-      
-      $('#photoModal').hide();
-    });
+      // Lógica para upload de fotos
+      $('#uploadForm').submit(function (e) {
+          e.preventDefault();
+          const fileInput = $('#fileInput').val();
+          uploadImage(); // Função de upload que será definida
+          $('#photoModal').hide();
+      });
   </script>
 </body>
 

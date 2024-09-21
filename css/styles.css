@@ -1,141 +1,178 @@
 html, body {
-  height: 100%; /* Altura total da janela */
-  margin: 0; /* Remove margens padrão */
-  overflow-x: hidden; 
-  overflow-y: hidden;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
 #tabs {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Altura total da janela */
+  height: 100%;
 }
 
 #tabs > div {
-  flex-grow: 1; /* Permite que o conteúdo ocupe o espaço disponível */
-  padding: 20px; /* Espaçamento interno do conteúdo */
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto; /* Permite scroll nas abas */
 }
 
 .ui-tabs .ui-tabs-nav {
-  background: #007bff; /* Cor de fundo das abas */
-  border: none; /* Remove a borda padrão */
-  position: fixed; /* Fixa a barra das tabs na parte inferior */
-  bottom: 0; /* Posiciona na parte inferior */
-  width: 100%; /* Largura total */
-  display: flex; /* Usa flexbox para organizar as abas */
-  justify-content: space-around; /* Espaço igual entre as abas */
-  z-index: 99999999999999999;
+  background: #007bff;
+  border: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  z-index: 100;
 }
 
 .ui-tabs .ui-tabs-nav li {
-  list-style: none; /* Remove marcador padrão */
+  list-style: none;
 }
 
 .ui-tabs .ui-tabs-nav li a {
-  color: white; /* Cor do texto das abas */
-  padding: 10px 15px; /* Espaçamento interno das abas */
-  text-decoration: none; /* Remove o sublinhado */
-  display: flex; /* Permite o uso de ícones */
-  align-items: center; /* Centraliza ícones e texto verticalmente */
-}
-
-.ui-tabs .ui-tabs-nav li a i {
-  margin-right: 5px; /* Espaçamento entre ícone e texto */
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .ui-tabs .ui-tabs-nav li a:hover {
-  background: rgba(255, 255, 255, 0.2); /* Efeito de hover nas abas */
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-  background: #0056b3; /* Cor de fundo da aba ativa */
+  background: #0056b3;
 }
 
-/* Estilo das abas */
-#tab-1, #tab-2 {
-  display: none; /* Esconde as abas inicialmente */
-}
-
-#tab-1.ui-tabs-active, #tab-2.ui-tabs-active {
-  display: block; /* Mostra a aba ativa */
-}
-
-.swiper-container {
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 100%;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.close {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.close:hover, .close:focus {
+  color: black;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilos para o Swiper */
+.swiper-container {
+  margin-top: 80px;
+  height: calc(100% - 160px); /* Ajuste para o cabeçalho e as abas */
+}
+
+.fotos-swiper {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.swiper-wrapper {
+  display: flex;
 }
 
 .swiper-slide {
   height: 100%;
-  justify-self: center;
-  align-self: center;
+  justify-content: center;
   text-align: center;
 }
 
-    /* Estilos do modal */
-    .modal {
-      display: none; /* Modal oculto por padrão */
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    }
+/* Estilo dos botões de navegação do Swiper */
+.swiper-button-next, .swiper-button-prev {
+  color: #007bff;
+}
 
-    .modal-content {
-      background-color: white;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      position: relative;
-    }
+/* Ajustes gerais */
+img {
+  width: 90%;
+}
 
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-    }
+.upload-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 15px;
+  text-decoration: none;
+}
 
-    .modal-header h2 {
-      margin: 0;
-    }
+.upload-btn:hover {
+  background-color: #0056b3;
+}
 
-    .close {
-      color: #aaa;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover, .close:focus {
-      color: black;
-    }
-
-    .modal-body {
-      padding: 10px 0;
-    }
-
-    /* Estilo do botão de upload */
-    .upload-btn {
-      display: inline-block;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      text-align: center;
-      margin-top: 20px;
-      text-decoration: none;
-    }
-
-    .upload-btn:hover {
-      background-color: #0056b3;
-    }
+.margin-do-cabecalho {
+  margin-top: 17%;
+}

@@ -7,14 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const predefinePasswordsLiriel = 'liriel';
 
         if (passwordInput === predefinedPasswordSamira) {
+            fetch('https://api-marcelo.netlify.app/.netlify/functions/cloudinary/eventos') {
+                
+            }
             localStorage.setItem('authenticated', 'true');
             localStorage.setItem('usuario', 'samira');
-        
-            if (!localStorage.getItem('firstAccess_samira')) {
-                window.location.href = 'primeiroAcesso.html';
-            } else {
-                window.location.href = 'swiperSamira.html'; // Redireciona para a página de mensagens
-            }
+            window.location.href = 'swiperSamira.html';
         } else if(passwordInput === predefinePasswordsLiriel) {
             localStorage.setItem('authenticated', 'true');
             localStorage.setItem('usuario', 'liriel');

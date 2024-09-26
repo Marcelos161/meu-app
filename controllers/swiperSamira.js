@@ -1,10 +1,5 @@
 const usuarioLogado = localStorage.getItem('usuario');
 
-// Verifica se é o primeiro acesso
-if (!localStorage.getItem('firstAccess_samira')) {
-  window.location.href = 'primeiroAcesso.html';
-}
-
 // Verifica se o usuário está autenticado
 if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('usuario') !== 'samira') {
   window.location.href = 'index.html'; // Redireciona para a página de login

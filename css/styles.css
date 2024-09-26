@@ -18,7 +18,7 @@ html, body {
 }
 
 .ui-tabs .ui-tabs-nav {
-  background: #007bff;
+  background: #4CAF50;
   border: none;
   position: fixed;
   bottom: 0;
@@ -33,7 +33,7 @@ html, body {
 }
 
 .ui-tabs .ui-tabs-nav li a {
-  color: white;
+  color: #4CAF50;
   padding: 10px 15px;
   text-decoration: none;
   display: flex;
@@ -45,7 +45,7 @@ html, body {
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-  background: #0056b3;
+  background: #5e5e5eab;
 }
 
 /* Modal Styles */
@@ -175,4 +175,96 @@ img {
 
 .margin-do-cabecalho {
   margin-top: 17%;
+}
+
+/* Container da lista de comentários */
+.comentarios-list {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* Estilo de cada comentário */
+.comentario-item {
+  margin-bottom: 12px;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho do comentário (nome do usuário e data) */
+.comentario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Nome do usuário */
+.comentario-usuario {
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Data do comentário */
+.comentario-data {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Texto do comentário */
+.comentario-texto {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Campo de texto para adicionar novo comentário */
+textarea.comentario {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Botão de enviar comentário */
+button.enviar-comentario {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button.enviar-comentario:hover {
+  background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  textarea.comentario {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  button.enviar-comentario {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }

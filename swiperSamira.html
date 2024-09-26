@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Swiper Carousel Samira</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/styles.css"> <!-- Link para o CSS externo -->
@@ -11,14 +11,15 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- jQuery UI CSS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> <!-- jQuery UI -->
+  
 </head>
 
 <body>
   <!-- Cabeçalho fixo -->
   <header class="header">
     <div class="user-info">
-      <img src="URL_DA_FOTO_DO_USUARIO" alt="Foto do Usuário" class="user-photo">
-      <span class="user-name">Nome do Usuário</span>
+      <img src="./css/fotos/foto samira.jpg" alt="Foto do Usuário" class="user-photo">
+      <span class="user-name">Samira</span>
     </div>
     <div class="header-buttons">
     </div>
@@ -44,14 +45,15 @@
   <!-- Tabs para navegação entre as seções -->
   <div id="tabs">
     <ul>
-      <li><a href="#tab-1">Chat</a></li>
+      <li><a href="#tab-1">Twitter</a></li>
       <li><a href="#tab-2">Galeria de Fotos</a></li>
       <li><a href="#tab-3">Contrato</a></li>
     </ul>
 
     <!-- Conteúdo do Chat -->
     <div id="tab-1" class="margin-do-cabecalho">
-      <p>oii</p>
+      <header>Twittter Verde</header>
+      <p>is comming</p>
     </div>
 
     <!-- Galeria de Fotos com Modal para upload -->
@@ -149,6 +151,7 @@
       uploadImage(); // Função de upload que será definida
       $('#photoModal').fadeOut();
     });
+    
   </script>
 </body>
 

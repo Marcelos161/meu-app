@@ -129,10 +129,13 @@ function uploadImage() {
     method: 'POST',
     body: formData, // Remova o cabeçalho 'Content-Type'
   })
-  .then(response => response.json())
+  .then(response => {
+    response.json();
+    window.location.reload();
+  }) 
   .then()
   .catch(error => console.error('Erro ao adicionar foto:', error));
-  
+
 }
 
 function listarImagens() {

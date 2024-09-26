@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const predefinePasswordsLiriel = 'liriel';
 
         if (passwordInput === predefinedPasswordSamira) {
-            fetch('https://api-marcelo.netlify.app/.netlify/functions/cloudinary/eventos') {
-                
-            }
             localStorage.setItem('authenticated', 'true');
             localStorage.setItem('usuario', 'samira');
             window.location.href = 'swiperSamira.html';

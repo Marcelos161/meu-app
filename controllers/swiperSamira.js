@@ -2,6 +2,7 @@ const usuarioLogado = localStorage.getItem('usuario');
 
 // Verifica se o usuário está autenticado
 if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('usuario') !== 'samira') {
+  eventos('usuario autenticado e entrando');
   window.location.href = 'index.html'; // Redireciona para a página de login
 }
 
@@ -47,7 +48,6 @@ async function buscarComentarios() {
   try {
     const response = await fetch('https://api-marcelo.netlify.app/.netlify/functions/cloudinary/comentarios');
     const comentarios = await response.json();
-    console.log(comentarios);
 
     // Mapeia os comentários para cada foto
     const fotosIds = new Set(comentarios.map(comentario => comentario.ID_foto)); // Conjunto de IDs de fotos
@@ -140,6 +140,7 @@ function listarImagens() {
     .then(response => response.json())
     .then(data => {
       const images = data.resources;  // Pega as imagens da resposta JSON
+      eventos('carregou imagens');
       loadFotos(images);  // Chama a função para carregar as fotos no Swiper
     })
     .catch(error => {
@@ -165,4 +166,21 @@ document.addEventListener('click', function(event) {
     }
   }
 });
+
+  async function eventos(nome_evento) {
+    try {
+      await fetch('https://api-marcelo.netlify.app/.netlify/functions/cloudinary/eventos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome_evento: nome_evento,
+          usuario: usuarioLogado,
+        }),
+      });
+    } catch (error) {
+      console.error('Erro ao enviar o comentário', error);
+    }
+  }
 

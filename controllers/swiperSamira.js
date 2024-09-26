@@ -142,7 +142,8 @@ function listarImagens() {
   fetch(urlProduct)
     .then(response => response.json())
     .then(data => {
-      const images = data.resources;  // Pega as imagens da resposta JSON
+      const images = data.images;
+      console.log(images);  // Pega as imagens da resposta JSON
       eventos('carregou imagens');
       loadFotos(images);  // Chama a função para carregar as fotos no Swiper
     })
